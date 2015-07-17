@@ -6,8 +6,10 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure                          "1.6.0"]
                  [cc.qbits/hayt                                "2.1.0"]
-                 [com.datastax.cassandra/cassandra-driver-core "2.1.4"]
-                 [com.datastax.cassandra/cassandra-driver-dse  "2.1.4"]]
+                 [com.datastax.cassandra/cassandra-driver-core "2.2.0-rc2-SHADED"]
+                 [com.datastax.cassandra/cassandra-driver-dse  "2.2.0-rc1"]
+                 [com.google.guava/guava "18.0"]
+                 [com.codahale.metrics/metrics-core "3.0.2"]]
   :source-paths      ["src/clojure"]
   :java-source-paths ["src/java"]
   :profiles       {:1.7 {:dependencies [[org.clojure/clojure "1.7.0-alpha5"]]}

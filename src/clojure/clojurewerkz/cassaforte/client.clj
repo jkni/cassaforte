@@ -76,7 +76,7 @@
            kerberos
            protocol-version
            compression]
-    :or {protocol-version 2}}]
+    :or {protocol-version com.datastax.driver.core.ProtocolVersion/V2}}]
   (when force-prepared-queries
     (alter-var-root (var hayt/*prepared-statement*)
                     (constantly true)))
