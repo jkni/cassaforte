@@ -1,4 +1,4 @@
-(defproject jkni/cassaforte "trunk-SNAPSHOT"
+(defproject clojurewerkz/cassaforte "trunk-SNAPSHOT"
   :min-lein-version "2.5.1"
   :description "A Clojure client for Apache Cassandra"
   :url "http://clojurecassandra.info"
