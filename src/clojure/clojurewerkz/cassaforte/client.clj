@@ -219,14 +219,13 @@
      * query + args - for building prepared statements, `query` is a string with placeholders, `values`
        are values to be bound to the built statement for execution.
      * query - for building simple, not prepared statements."
-  ([^PreparedStatement query values]
+  ([^PreparedStatement query values session]
      (set-statement-options- (.bind query (to-array values))))
-  ([^String string-query]
-     (set-statement-options- (SimpleStatement. string-query))))
+  ([^String string-query session]
+     (set-statement-options- (.newSimpleStatement session string-query))))
 
 (defn ^PreparedStatement prepare
   "Prepares the provided query on C* server for futher execution.
-
    This assumes that query is valid. Returns the prepared statement corresponding to the query."
   ([^Session session ^String query]
      (.prepare ^Session session query)))
@@ -255,10 +254,11 @@
   (if prepared?
     (if (coll? query)
       (build-statement (prepare session (first query))
-                       (second query))
+                       (second query)
+                       session)
       (throw (IllegalArgumentException.
               "Query is meant to be executed as prepared, but no values were supplied.")))
-    (build-statement query)))
+    (build-statement query session)))
 
 (defn ^ResultSetFuture execute-async
   "Executes a pre-built query and returns a future.

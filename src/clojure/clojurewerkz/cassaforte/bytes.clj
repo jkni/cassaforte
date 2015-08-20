@@ -16,7 +16,8 @@
   "Facility functions to use with serialization, handle deserialization of all the data types
    supported by Cassandra."
   (:import java.nio.ByteBuffer java.util.Date
-           [com.datastax.driver.core DataType DataType$Name]))
+           [com.datastax.driver.core CodecRegistry DataType DataType$Name
+                                     ProtocolVersion]))
 
 (defn #^bytes to-bytes
   [^ByteBuffer byte-buffer]
@@ -26,4 +27,7 @@
 
 (defn deserialize
   [^DataType dt bytes ^Integer protocol-version]
-  (.deserialize dt bytes protocol-version))
+  ;(.deserialize dt bytes protocol-version)
+  (-> CodecRegistry/DEFAULT_INSTANCE
+      (.codecFor dt)
+      (.deserialize bytes (ProtocolVersion/fromInt protocol-version))))
