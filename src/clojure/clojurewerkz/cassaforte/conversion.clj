@@ -20,8 +20,8 @@
            [java.util Map List Set])
   (:require [clojurewerkz.cassaforte.bytes :as b]))
 
-;; Protocol version 2, requires Cassandra 2.0+.
-(def ^:const protocol-version 2)
+;; Protocol version 3
+(def ^:const protocol-version 3)
 
 (defprotocol ClojureRepresentation
   (to-clj [input] "Converts any definition to a Clojure data structure"))
